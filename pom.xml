@@ -3,7 +3,7 @@
   <groupId>uk.co.badgersinfoil.metaas</groupId>
   <artifactId>metaas</artifactId>
   <packaging>jar</packaging>
-  <version>0.9</version>
+  <version>0.10</version>
   <name>metaas</name>
   <description>Java library for generating and manipulating ActionScript 3 source code</description>
   <url>http://www.badgers-in-foil.co.uk/projects/metaas/</url>

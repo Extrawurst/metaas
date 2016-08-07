@@ -1,19 +1,13 @@
 package uk.co.badgersinfoil.metaas;
 
+import junit.framework.TestCase;
+import uk.co.badgersinfoil.metaas.dom.*;
+
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
-import uk.co.badgersinfoil.metaas.dom.ASArg;
-import uk.co.badgersinfoil.metaas.dom.ASClassType;
-import uk.co.badgersinfoil.metaas.dom.ASCompilationUnit;
-import uk.co.badgersinfoil.metaas.dom.ASField;
-import uk.co.badgersinfoil.metaas.dom.ASForStatement;
-import uk.co.badgersinfoil.metaas.dom.ASMethod;
-import uk.co.badgersinfoil.metaas.dom.ASPackage;
-import uk.co.badgersinfoil.metaas.dom.Visibility;
-import junit.framework.TestCase;
 
 
 public class BasicTests extends TestCase {
@@ -35,6 +29,7 @@ public class BasicTests extends TestCase {
 					" [Event(\"alpha\")]" +
 					" [Event(\"beta\")]" +
 					" private var x:String = 1;" +
+					" protected var vec:Vector.<int>;"+
 					" /** javadoc? */" +
 					" public static function func(arg:Number, foo=null, ...):Boolean {" +
 						" for (var b=1;b<=10;b++) { bar(); }" +
@@ -89,6 +84,11 @@ public class BasicTests extends TestCase {
 		assertEquals("x", x.getName());
 		assertEquals("String", x.getType());
 		assertEquals(Visibility.PRIVATE, x.getVisibility());
+
+		ASField vec = clazz.getField("vec");
+		assertEquals("vec", vec.getName());
+		assertEquals("Vector", vec.getType());
+		assertEquals(Visibility.PROTECTED, vec.getVisibility());
 		
 		assertNotNull(x.getFirstMetatag("Annotate"));
 

@@ -666,9 +666,14 @@ defaultXMLNamespaceStatement
 typeExpression
 	:	c=COLON
 		// TODO: identifier allows namespaces, and I suspect a type:spec shouldn't
-		(identifier | VOID | STAR)
-		-> ^(TYPE_SPEC[$c] identifier? VOID? STAR?)
+		(identifier | vectorIdentifier | VOID | STAR)
+		-> ^(TYPE_SPEC[$c] identifier? vectorIdentifier? VOID? STAR?)
 	;	
+
+vectorIdentifier
+	:
+		(VECTOR DOT LT identifier GT)
+	;
 
 identifier 
 	:	( 	qualifiedIdent -> qualifiedIdent
@@ -1246,6 +1251,7 @@ FINALLY		:	'finally';
 UNDEFINED	:	'undefined';
 THROW		:	'throw';
 FINAL		:	'final';
+VECTOR		:	'Vector';
 
 // OPERATORS
 QUESTION		:	'?'	;
